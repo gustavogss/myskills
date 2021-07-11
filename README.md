@@ -3,6 +3,8 @@ Aplicativo desenvolvido durante o Ignite da Rocketseat para cadastro de novas sk
 
 ## :robot: Tecnologias e Ferramentas utilizadas:
 - React-Native Cli
-- TypseScript
+- TypeScript
 - JSX
 - Javascript
+- Hooks:useState
+- FlatList
