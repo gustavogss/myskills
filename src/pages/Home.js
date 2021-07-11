@@ -1,49 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   Platform,
-  TouchableOpacity,
   StyleSheet,
   TextInput,
+  FlatList,
 } from "react-native";
+import { Button } from "../components/Button";
+import { CardSkills } from "../components/CardSkills";
 
 export function Home() {
-  const [newSkill, setNewSkill] = useState(''); //[estado, função_que_trata o estado]
-  const[mySkills, setMySkills] = useState([]);
+  const [newSkill, setNewSkill] = useState(""); //[estado, função_que_trata o estado]
+  const [mySkills, setMySkills] = useState([]);
+  const [gretting, setGretting] = useState("");
 
-  function handleAddNewSkill() { //handle é um padrão usado toda vez que tive ação do usuário
-    setMySkills(oldState =>[...oldState, newSkill]);
+  function handleAddNewSkill() {
+    //handle é um padrão usado toda vez que tive ação do usuário
+    setMySkills((oldState) => [...oldState, newSkill]);
   }
+
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+    if (currentHour < 12) {
+      setGretting("Bom dia");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGretting("Boa tarde");
+    } else {
+      setGretting("Boa noite");
+    }
+  }, []); //Tem como parâmetro uma função e uma array de dependências
 
   return (
     <View style={styles.container}>
-      <Text style={styles.nome}>Seja Bem-vindo, Gustavo</Text>
+      <Text style={styles.nome}>Olá, Gustavo</Text>
+      <Text style={styles.gretting}> {gretting} </Text>
       <TextInput
         style={styles.input}
         placeholder="Nova Skill"
         placeholderTextColor="#aaa"
         onChangeText={setNewSkill} //Quando o texto for alterado, a função setNewSkill atualiza o estado
       />
-      <TouchableOpacity 
-      style={styles.button} 
-      activeOpacity={0.7}
-      onPress={handleAddNewSkill}>
-        <Text style={styles.buttontext}>Adicionar</Text>
-      </TouchableOpacity>
-      <Text
-        style={[styles.title, {marginVertical:40}]}>
-        Minhas Skills
-      </Text>
-      {
-        mySkills.map(skill => (
-        <TouchableOpacity key={skill} style={styles.buttonskills}>
-        <Text style={styles.textskills}>
-          {skill}
-        </Text>
-        </TouchableOpacity>
-        ))
-      }
+      <Button onPress={handleAddNewSkill} />
+      <Text style={[styles.title, { marginVertical: 40 }]}>Minhas Skills</Text>
+
+      <FlatList
+        data={mySkills}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => <CardSkills skill={item} />}
+      />
     </View>
   );
 }
@@ -60,40 +65,19 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   input: {
-    backgroundColor:'#313131',
+    backgroundColor: "#313131",
     marginTop: 30,
     color: "#fff",
     fontSize: 18,
     padding: Platform.OS === "ios" ? 15 : 10,
     borderRadius: 7,
   },
-  button: {
-    backgroundColor: "#A370F7",
-    alignItems: "center",
-    padding: 15,
-    borderRadius: 7,
-    marginTop: 20,
-  },
-  buttontext: {
+  title: {
     color: "#fff",
-    fontSize: 17,
-    fontWeight: "700",
-  },
-  title:{
-    color:'#fff', 
     fontSize: 20,
   },
-  textskills:{
-  color:'#fff', 
-  fontSize:18,
-  fontWeight:'400'
+  gretting: {
+    color: "#fff",
+    marginVertical: 5,
   },
-  buttonskills:{
-    backgroundColor:'#313131',
-    padding:10,    
-    borderRadius:20,
-    alignItems:'center',
-    marginVertical: 10
-  }
-
 });
