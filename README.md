@@ -7,3 +7,4 @@ Aplicativo desenvolvido durante o Ignite da Rocketseat para cadastro de novas sk
 - JSX
 - Javascript
 - Hooks:useState
+- FlatList
