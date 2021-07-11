@@ -6,7 +6,7 @@ Aplicativo desenvolvido durante o Ignite da Rocketseat para cadastro de novas sk
 - TypeScript
 - JSX
 - Javascript
-- Hooks:useState
+- Hooks com useState e useEffect
 - FlatList
 
 ## :iphone: Layout
