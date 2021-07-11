@@ -1,0 +1,7 @@
+#Thu Jul 08 10:20:51 BRT 2021
+base.1=/home/dev/workspace/Rocketseat/IGNITE/ReactNative/myskills/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+path.1=classes.dex
+base.0=/home/dev/workspace/Rocketseat/IGNITE/ReactNative/myskills/android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex
