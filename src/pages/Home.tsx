@@ -10,14 +10,23 @@ import {
 import { Button } from "../components/Button";
 import { CardSkills } from "../components/CardSkills";
 
+interface SkillData {
+  id: string;
+  name: string;
+}
+
 export function Home() {
   const [newSkill, setNewSkill] = useState(""); //[estado, função_que_trata o estado]
-  const [mySkills, setMySkills] = useState([]);
+  const [mySkills, setMySkills] = useState<SkillData[]>([]);
   const [gretting, setGretting] = useState("");
 
   function handleAddNewSkill() {
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
     //handle é um padrão usado toda vez que tive ação do usuário
-    setMySkills((oldState) => [...oldState, newSkill]);
+    setMySkills((oldState) => [...oldState, data]);
   }
 
   useEffect(() => {
@@ -41,13 +50,14 @@ export function Home() {
         placeholderTextColor="#aaa"
         onChangeText={setNewSkill} //Quando o texto for alterado, a função setNewSkill atualiza o estado
       />
-      <Button onPress={handleAddNewSkill} />
+      <Button title="Adicionar" onPress={handleAddNewSkill} />
+
       <Text style={[styles.title, { marginVertical: 40 }]}>Minhas Skills</Text>
 
       <FlatList
         data={mySkills}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => <CardSkills skill={item} />}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <CardSkills skill={item.name} />}
       />
     </View>
   );
