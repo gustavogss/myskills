@@ -40,6 +40,13 @@ export function Home() {
     }
   }, []); //Tem como parâmetro uma função e uma array de dependências
 
+  function handleRemoveSkill(id:string){
+    setMySkills(oldState => oldState.filter(
+      skill => skill.id !== id
+    ));
+
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.nome}>Olá, Gustavo</Text>
@@ -57,7 +64,9 @@ export function Home() {
       <FlatList
         data={mySkills}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <CardSkills skill={item.name} />}
+        renderItem={({ item }) => <CardSkills 
+        skill={item.name} 
+        onPress={()=>handleRemoveSkill(item.id)}/>}
       />
     </View>
   );
