@@ -1,7 +1,7 @@
-# :computer: Projeto
+#  Projeto :rocket:
 Aplicativo desenvolvido durante o Ignite da Rocketseat para cadastro de novas skills
 
-## :robot: Tecnologias e Ferramentas utilizadas:
+## Tecnologias e Ferramentas utilizadas :robot:
 - React-Native Cli
 - TypeScript
 - JSX
@@ -9,7 +9,7 @@ Aplicativo desenvolvido durante o Ignite da Rocketseat para cadastro de novas sk
 - Hooks com useState e useEffect
 - FlatList
 
-## 🔌: Como usar o projeto:
+## Como usar o projeto 🔌
 - Abra seu terminal e clone o repositorio: git clone https://github.com/gustavogss/myskills.git
 - Entre na pasta myskills
 - E instale as bibliotecas de dependências com: npm install
